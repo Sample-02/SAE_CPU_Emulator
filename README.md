@@ -9,10 +9,8 @@
 3. Go /target/debug
 4. ./livrable1 [OPTIONS] <BINARY_FILE>
 
-==============
 ## Commandes
-Help
+[Help]
 ./livrable1 -h
--------
-Decode Binary File
+[Decode Binary File]
 ./livrable1 yourfile.bin
