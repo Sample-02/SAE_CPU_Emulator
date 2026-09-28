@@ -11,13 +11,13 @@ fn gen_decod_tabl() -> HashMap<u8, OpcodeSig>{
     //hashmap pour sauvegarder chaque signification en fonction de l'opcode (binaire)
     let mut decode_tabl: HashMap<u8, OpcodeSig> = HashMap::new();
 
-    decode_tabl.insert(0b1100011, OpcodeSig{ instruction: String::from("BRANCH"), encoding: String::from("Sb")});
+    decode_tabl.insert(0b1100011, OpcodeSig{ instruction: String::from("BRANCH"), encoding: String::from("S_B")});
     decode_tabl.insert(0b1100111, OpcodeSig{ instruction: String::from("JALR"), encoding: String::from("I") });
     decode_tabl.insert(0b0000011, OpcodeSig{ instruction: String::from("LOAD"), encoding: String::from("I") });
     decode_tabl.insert(0b0001111, OpcodeSig{ instruction: String::from("MISC-MEM"), encoding: String::from("I") });
     decode_tabl.insert(0b0010011, OpcodeSig{ instruction: String::from("OP-IMM"), encoding: String::from("I") });
     decode_tabl.insert(0b1110011, OpcodeSig{ instruction: String::from("SYSTEM"), encoding: String::from("I") });
-    decode_tabl.insert(0b1101111, OpcodeSig{ instruction: String::from("JAL"), encoding: String::from("Uj") });
+    decode_tabl.insert(0b1101111, OpcodeSig{ instruction: String::from("JAL"), encoding: String::from("U_J") });
     decode_tabl.insert(0b0110011, OpcodeSig{ instruction: String::from("OP"), encoding: String::from("R") });
     decode_tabl.insert(0b0100011, OpcodeSig{ instruction: String::from("STORE"), encoding: String::from("S") });
     decode_tabl.insert(0b0010111, OpcodeSig{ instruction: String::from("AUIPC"), encoding: String::from("U") });
@@ -30,6 +30,7 @@ fn file_reader(file_path: &String) -> Vec<u8>{
     return std::fs::read(file_path).unwrap();
 }
 
+// Conversion little endian & retour mot / opcode
 fn little_endian_word_opcode(byte1: u8, byte2: u8, byte3: u8, byte4: u8) -> (u32, u8){
     let word = u32::from_le_bytes([byte1, byte2, byte3, byte4]);
     let word_opcode = (word & 0x7F) as u8;

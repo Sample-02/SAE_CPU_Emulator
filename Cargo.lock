@@ -3,5 +3,5 @@
 version = 4
 
 [[package]]
-name = "livrable1"
+name = "decode_riscv"
 version = "0.1.0"
